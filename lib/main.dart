@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:integration_test_app/home_screen.dart';
+import 'package:integration_test_app/dummy_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -32,36 +32,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: controller,
-                  validator: (value) {
-                    if (value?.isEmpty ?? true) return "Field can't be empty";
-                    return null;
-                  },
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState?.validate() ?? false) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()),
-                      );
-                    }
-                  },
-                  child: const Text('navigate'),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      home: DummyScreen(formKey: formKey, controller: controller),
     );
   }
 }
